@@ -1,20 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Custom Virgin Money inspired styles */
-:root {
-  --virgin-red: #E31E24;
-  --virgin-blue: #004B87;
-  --virgin-light-blue: #0066CC;
-  --virgin-gray: #F5F5F5;
-  --virgin-dark-gray: #333333;
+@layer base {
+  body {
+    @apply antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  color: var(--virgin-dark-gray);
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
 }
