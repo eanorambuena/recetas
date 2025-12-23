@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BookOpen, Clock, Users, ChefHat, ArrowLeft, Check, Heart, Flame, Coffee, Utensils, MapPin, Fish, WheatOff, Camera, Youtube, ExternalLink } from 'lucide-react';
 
 // Textura de papel SVG (Mantenida)
@@ -205,7 +205,7 @@ const recipes = [
 ];
 
 // Componente para tarjetas individuales en el inicio
-const RecipeCard = ({ recipe, onClick }) => (
+const RecipeCard = ({ recipe, onClick }: { recipe: any; onClick: (recipe: any) => void }) => (
   <div 
     onClick={() => onClick(recipe)}
     className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer border border-stone-200 flex flex-col h-full relative"
@@ -259,10 +259,10 @@ const RecipeCard = ({ recipe, onClick }) => (
 );
 
 // Componente de Vista Detallada
-const RecipeDetail = ({ recipe, onBack }) => {
-  const [completedSteps, setCompletedSteps] = useState([]);
+const RecipeDetail = ({ recipe, onBack }: { recipe: any; onBack: () => void }) => {
+  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
 
-  const toggleStep = (index) => {
+  const toggleStep = (index: number) => {
     if (completedSteps.includes(index)) {
       setCompletedSteps(completedSteps.filter(i => i !== index));
     } else {
@@ -398,7 +398,7 @@ const RecipeDetail = ({ recipe, onBack }) => {
             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200/60">
               <h3 className="text-2xl font-serif font-bold mb-6 pb-2 border-b border-stone-100 text-stone-800">Ingredientes</h3>
               <ul className="grid md:grid-cols-2 gap-y-3 gap-x-8">
-                {recipe.ingredients.map((ing, idx) => (
+                {recipe.ingredients.map((ing: any, idx: number) => (
                   <li key={idx} className="flex items-start gap-3 group">
                     <input 
                       type="checkbox" 
@@ -414,7 +414,7 @@ const RecipeDetail = ({ recipe, onBack }) => {
             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200/60">
               <h3 className="text-2xl font-serif font-bold mb-6 pb-2 border-b border-stone-100 text-stone-800">Instrucciones</h3>
               <div className="space-y-6">
-                {recipe.steps.map((step, idx) => {
+                {recipe.steps.map((step: any, idx: number) => {
                   const isDone = completedSteps.includes(idx);
                   return (
                     <div 
